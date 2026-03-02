@@ -1,208 +1,150 @@
-/* --- Reset e Fundamentos --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    overflow: hidden; /* Impede rolagem da página para focar no carrossel */
-    font-family: 'Cormorant Garamond', serif; /* Fonte principal, elegante e legível */
-    background-color: #1a0a0d; /* Um vinho quase preto, profundo e melancólico */
-    color: #f8f1e9; /* Creme muito suave, quase branco antique, para leitura confortável */
+    background-color: #0d0405;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100vw;
+    overflow: hidden;
+    font-family: 'Cormorant Garamond', serif;
+    color: #fceeee;
 }
 
-/* --- Container Imersivo --- */
-.immersive-container {
-    position: relative;
+/* Fundo Imersivo */
+.parallax-bg {
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3) blur(4px);
+    z-index: 1;
+    transition: transform 0.1s ease-out;
+}
+
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
+    z-index: 2;
+}
+
+.app-container {
+    position: relative;
+    z-index: 3;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 40px;
-}
-
-/* --- Fundo de Tulipas Dinâmico --- */
-.tulip-garden {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    /* Imagem de fundo de alta qualidade de tulipas escuras/melancólicas */
-    background-image: url('https://images.unsplash.com/photo-1588611166691-88c935d21a52?q=80&w=1920&auto=format&fit=crop'); 
-    background-size: cover;
-    background-position: center;
-    filter: blur(8px) brightness(0.4) saturate(0.8); /* Desfoca e escurece para criar mistério */
-    transition: filter 1s ease;
-}
-
-/* Sobreposição para foco no texto */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    background: radial-gradient(circle, rgba(26,10,13,0.3) 0%, rgba(26,10,13,0.9) 100%);
-}
-
-/* --- Santuário dos Poemas (Main) --- */
-.poem-sanctuary {
-    position: relative;
-    z-index: 3;
-    flex: 1;
-    display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
+    padding: 20px;
 }
 
-.poem-carousel {
-    position: relative;
+.poem-wrapper {
     width: 100%;
-    height: 100%;
+    height: 75vh;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* --- Cartão do Poema (Onde o texto vive) --- */
 .poem-card {
     position: absolute;
     width: 100%;
-    max-height: 80vh;
-    overflow-y: auto; /* Permite rolar se o poema for muito longo */
-    padding: 60px;
-    background: rgba(255, 255, 255, 0.03); /* Quase transparente */
-    backdrop-filter: blur(15px) saturate(180%); /* Efeito Glassmorphism: desfoque de fundo sofisticado */
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    max-height: 90%;
+    padding: 30px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    border: 1px solid rgba(255, 182, 193, 0.1); /* Borda rosa chá quase invisível */
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-    
-    /* Estado Inicial (Escondido) */
     opacity: 0;
-    transform: translateY(30px) scale(0.95);
-    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1); /* Transição suave e complexa */
-    pointer-events: none;
-    z-index: 1;
+    visibility: hidden;
+    transform: translateY(30px) scale(0.9);
+    transition: all 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+    overflow-y: auto;
 }
 
-/* Estado Ativo (Visível) */
 .poem-card.active {
     opacity: 1;
+    visibility: visible;
     transform: translateY(0) scale(1);
-    pointer-events: auto;
-    z-index: 2;
 }
 
-/* Efeito de saída */
-.poem-card.exit {
-    opacity: 0;
-    transform: translateY(-30px) scale(1.05);
-}
-
-/* --- O Texto do Poema --- */
-.poem-text {
+pre {
     white-space: pre-wrap;
-    word-wrap: break-word;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem; /* Tamanho de leitura confortável */
-    line-height: 1.7; /* Espaçamento generoso entre linhas */
-    font-weight: 300;
-    color: #f0e6da; /* Creme antique suave */
-    text-align: left; /* Alinhamento mais íntimo */
-    margin: 0;
-    /* Sombra projetada muito sutil para destacar do fundo desfocado */
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #f7dada;
+    text-align: center;
 }
 
-/* Customizando a barra de rolagem dentro do card */
-.poem-card::-webkit-scrollbar {
-    width: 8px;
-}
-.poem-card::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-}
-.poem-card::-webkit-scrollbar-thumb {
-    background: rgba(255, 182, 193, 0.2);
-    border-radius: 4px;
+/* Card Final Especial */
+.final-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(145deg, rgba(139, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
 }
 
-/* --- Navegação --- */
-.poem-navigation {
-    position: relative;
-    z-index: 4;
+.dedicatoria {
+    text-align: center;
+}
+
+.dedicatoria .small {
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #ffb6c1;
+}
+
+.dedicatoria h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255, 182, 193, 0.5);
+}
+
+/* Navegação Mobile */
+.nav-bar {
     width: 100%;
-    max-width: 900px;
-    margin: 20px auto 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #ffb6c1; /* Rosa chá suave para os controles */
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
+    padding: 20px;
+    margin-top: 20px;
 }
 
-.nav-btn {
+button {
     background: none;
-    border: 1px solid rgba(255, 182, 193, 0.3);
+    border: 1px solid rgba(255, 182, 193, 0.4);
     color: #ffb6c1;
-    font-size: 1.5rem;
     padding: 10px 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.nav-btn:hover {
-    background-color: rgba(255, 182, 193, 0.1);
-    border-color: #ffb6c1;
-    box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+button:active {
+    background: rgba(255, 182, 193, 0.2);
+    transform: scale(0.95);
 }
 
-.nav-btn .arrow {
-    font-family: Arial, sans-serif; /* Seta padrão para consistência */
-}
-
-.poem-pagination {
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-}
-
-.poem-pagination .total {
-    opacity: 0.6;
-}
-
-/* --- Responsividade --- */
-@media (max-width: 768px) {
-    .immersive-container {
-        padding: 20px;
-    }
-    .poem-card {
-        padding: 40px;
-    }
-    .poem-text {
-        font-size: 1.1rem;
-    }
-    .poem-navigation {
-        margin-top: 10px;
-    }
-    .nav-btn {
-        padding: 8px 15px;
-        font-size: 1.2rem;
-    }
+.indicator {
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    color: rgba(255, 182, 193, 0.6);
 }
