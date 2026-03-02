@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poemas e Tulipas</title>
+    <title>Para Você, Com Todo Meu Ser</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="tulip-bg"></div>
+    <div class="immersive-container">
 
-    <div class="container">
-        <div class="poem-wrapper">
-            
-            <section class="poem-card active">
-                <pre>
+        <div id="tulip-garden" class="tulip-garden"></div>
+
+        <div class="overlay"></div>
+
+        <main class="poem-sanctuary">
+            <div class="poem-carousel">
+                
+                <article class="poem-card active" data-index="0">
+                    <pre class="poem-text">
 De tantos cachos que já vi na vida,
 decidi me apegar aos mais difíceis.
 Não são cachos de fruta
@@ -37,10 +42,10 @@ e aprisionam meu olhar.
 
 E foi neles
 que meu coração decidiu morar.</pre>
-            </section>
+                </article>
 
-            <section class="poem-card">
-                <pre>
+                <article class="poem-card" data-index="1">
+                    <pre class="poem-text">
 Às vezes, me surpreendo sorrindo
 ao recordar nossas risadas e pequenas bobeiras
 que, sem esforço, se tornaram eternas.
@@ -58,10 +63,10 @@ de que, mesmo na ausência da sua companhia,
 você permanece aqui 
 vivendo comigo,
 em cada batida do meu coração.</pre>
-            </section>
+                </article>
 
-            <section class="poem-card">
-                <pre>
+                <article class="poem-card" data-index="2">
+                    <pre class="poem-text">
 Me pego pensando
 se é certo eu te amar.
 Mesmo depois do término,
@@ -82,10 +87,10 @@ Quero apenas te amar
 e suportar tudo
 o que for preciso
 para que esse amor exista.</pre>
-            </section>
+                </article>
 
-            <section class="poem-card">
-                <pre>
+                <article class="poem-card" data-index="3">
+                    <pre class="poem-text">
 Eu estou enlouecendo e me adoecendo aos poucos,
 mas ainda assim quero que isso dê certo.
 Mesmo você já tendo me superado
@@ -111,10 +116,10 @@ mesmo assim eu fico,
 porque no fundo ainda quero
 que, de algum jeito impossível,
 isso dê certo.</pre>
-            </section>
+                </article>
 
-            <section class="poem-card">
-                <pre>
+                <article class="poem-card" data-index="4">
+                    <pre class="poem-text">
 Eu não quero outra pessoa, eu quero você.
 Quero sorrir ao seu lado,
 te beijar para compensar todo o tempo
@@ -124,26 +129,35 @@ Não quero outro alguém,
 porque mesmo se quisesse,
 acabaria procurando você em outra pessoa.
 Mas é por você que meu coração palpita e implora,
-é o seu nome que ele chama em silêncio,
-é o seu abraço que ele reconhece como lar.
+is o seu nome que ele chama em silêncio,
+is o seu abraço que ele reconhece como lar.
 E mesmo quando tento seguir em frente,
-é em você que meus pensamentos descansam,
-é em você que meus sentimentos se perdem
+is em você que meus pensamentos descansam,
+is em você que meus sentimentos se perdem
 e se encontram ao mesmo tempo.
 Porque não é só saudade,
 não é só lembrança,
-é um querer que insiste,
+is um querer que insiste,
 um sentimento que permanece,
 e um amor que, mesmo em silêncio,
 ainda escolhe você todos os dias.</pre>
-            </section>
+                </article>
 
-        </div>
+            </div>
+        </main>
 
-        <div class="controls">
-            <button id="prevBtn">Anterior</button>
-            <button id="nextBtn">Próximo</button>
-        </div>
+        <nav class="poem-navigation">
+            <button id="prevBtn" class="nav-btn prev" aria-label="Poema Anterior">
+                <span class="arrow">&#8592;</span>
+            </button>
+            <div class="poem-pagination">
+                <span class="current">1</span> / <span class="total">5</span>
+            </div>
+            <button id="nextBtn" class="nav-btn next" aria-label="Próximo Poema">
+                <span class="arrow">&#8594;</span>
+            </button>
+        </nav>
+
     </div>
 
     <script src="script.js"></script>
