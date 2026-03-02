@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:italic,wght@0,400;0,700;1,400&family=Playfair+Display:ital@1&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff5f5; /* Creme rosado */
+    font-family: 'Lora', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    color: #5d2a2a;
+}
+
+/* Fundo com Tulipas Animadas */
+.tulip-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(180deg, #ffeef0 0%, #ffcbd1 100%);
+    opacity: 0.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
+    border: 1px solid #ffb6c1;
+    backdrop-filter: blur(5px);
+}
+
+.poem-wrapper {
+    position: relative;
+    height: 450px; /* Ajuste conforme o tamanho dos poemas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.poem-card {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-in-out;
+    width: 100%;
+    pointer-events: none;
+}
+
+.poem-card.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-family: 'Lora', serif;
+    margin: 0;
+}
+
+.controls {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    background: #ff8fa3;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    transition: background 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #ff4d6d;
+}
+
+/* Estilo extra para o tema Tulipa */
+.container::before {
+    content: '🌷';
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
