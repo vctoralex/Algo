@@ -2,25 +2,21 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Você, Com Todo Meu Ser</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para Leticia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="immersive-container">
+    <div class="parallax-bg" id="bg"></div>
+    <div class="vignette"></div>
 
-        <div id="tulip-garden" class="tulip-garden"></div>
-
-        <div class="overlay"></div>
-
-        <main class="poem-sanctuary">
-            <div class="poem-carousel">
-                
-                <article class="poem-card active" data-index="0">
-                    <pre class="poem-text">
-De tantos cachos que já vi na vida,
+    <div class="app-container">
+        <div class="poem-wrapper" id="slider">
+            
+            <article class="poem-card active">
+                <pre>De tantos cachos que já vi na vida,
 decidi me apegar aos mais difíceis.
 Não são cachos de fruta
 que se encontram nas árvores
@@ -42,11 +38,10 @@ e aprisionam meu olhar.
 
 E foi neles
 que meu coração decidiu morar.</pre>
-                </article>
+            </article>
 
-                <article class="poem-card" data-index="1">
-                    <pre class="poem-text">
-Às vezes, me surpreendo sorrindo
+            <article class="poem-card">
+                <pre>Às vezes, me surpreendo sorrindo
 ao recordar nossas risadas e pequenas bobeiras
 que, sem esforço, se tornaram eternas.
 Guardo cada instante no peito,
@@ -63,11 +58,10 @@ de que, mesmo na ausência da sua companhia,
 você permanece aqui 
 vivendo comigo,
 em cada batida do meu coração.</pre>
-                </article>
+            </article>
 
-                <article class="poem-card" data-index="2">
-                    <pre class="poem-text">
-Me pego pensando
+            <article class="poem-card">
+                <pre>Me pego pensando
 se é certo eu te amar.
 Mesmo depois do término,
 tento fingir que não me importo 
@@ -87,17 +81,16 @@ Quero apenas te amar
 e suportar tudo
 o que for preciso
 para que esse amor exista.</pre>
-                </article>
+            </article>
 
-                <article class="poem-card" data-index="3">
-                    <pre class="poem-text">
-Eu estou enlouecendo e me adoecendo aos poucos,
+            <article class="poem-card">
+                <pre>Eu estou enlouecendo e me adoecendo aos poucos,
 mas ainda assim quero que isso dê certo.
 Mesmo você já tendo me superado
 e estando em outro ponto da sua vida agora.
 Você trocou o sentido que eu tinha pra você,
 mudou o lugar que eu ocupava no seu mundo.
-E eu ficou aqui, parado no tempo,
+E eu fiquei aqui, parado no tempo,
 tentando entender onde foi que me perdi.
 Toda vez que você me trata com afeto,
 minha esperança cresce sem pedir licença,
@@ -116,11 +109,10 @@ mesmo assim eu fico,
 porque no fundo ainda quero
 que, de algum jeito impossível,
 isso dê certo.</pre>
-                </article>
+            </article>
 
-                <article class="poem-card" data-index="4">
-                    <pre class="poem-text">
-Eu não quero outra pessoa, eu quero você.
+            <article class="poem-card">
+                <pre>Eu não quero outra pessoa, eu quero você.
 Quero sorrir ao seu lado,
 te beijar para compensar todo o tempo
 em que fiquei sem te beijar,
@@ -129,35 +121,34 @@ Não quero outro alguém,
 porque mesmo se quisesse,
 acabaria procurando você em outra pessoa.
 Mas é por você que meu coração palpita e implora,
-is o seu nome que ele chama em silêncio,
-is o seu abraço que ele reconhece como lar.
+é o seu nome que ele chama em silêncio,
+é o seu abraço que ele reconhece como lar.
 E mesmo quando tento seguir em frente,
-is em você que meus pensamentos descansam,
-is em você que meus sentimentos se perdem
+é em você que meus pensamentos descansam,
+é em você que meus sentimentos se perdem
 e se encontram ao mesmo tempo.
 Porque não é só saudade,
 não é só lembrança,
-is um querer que insiste,
+é um querer que insiste,
 um sentimento que permanece,
 e um amor que, mesmo em silêncio,
 ainda escolhe você todos os dias.</pre>
-                </article>
+            </article>
 
-            </div>
-        </main>
+            <article class="poem-card final-card">
+                <div class="dedicatoria">
+                    <p class="small">Para</p>
+                    <h1>Leticia Erks</h1>
+                </div>
+            </article>
 
-        <nav class="poem-navigation">
-            <button id="prevBtn" class="nav-btn prev" aria-label="Poema Anterior">
-                <span class="arrow">&#8592;</span>
-            </button>
-            <div class="poem-pagination">
-                <span class="current">1</span> / <span class="total">5</span>
-            </div>
-            <button id="nextBtn" class="nav-btn next" aria-label="Próximo Poema">
-                <span class="arrow">&#8594;</span>
-            </button>
-        </nav>
+        </div>
 
+        <div class="nav-bar">
+            <button id="prevBtn">Anterior</button>
+            <div class="indicator" id="progresso">1 / 6</div>
+            <button id="nextBtn">Próximo</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
