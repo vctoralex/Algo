@@ -1,73 +1,72 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.poem-card');
-    const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const currentPageSpan = document.querySelector('.poem-pagination .current');
-    const totalPagesSpan = document.querySelector('.poem-pagination .total');
-    const tulipGarden = document.getElementById('tulip-garden');
-
+    const prevBtn = document.getElementById('prevBtn');
+    const progresso = document.getElementById('progresso');
+    const bg = document.getElementById('bg');
+    
     let currentIndex = 0;
-    const totalCards = cards.length;
 
-    // Inicializa a paginação
-    totalPagesSpan.textContent = totalCards;
-
-    function updatePagination(index) {
-        currentPageSpan.textContent = index + 1;
-    }
-
-    function showCard(index, direction) {
-        // Encontra o card ativo atual
-        const currentCard = document.querySelector('.poem-card.active');
+    // Efeito de movimento no fundo conforme o celular se move (Giroscópio suave)
+    window.addEventListener('deviceorientation', (event) => {
+        const x = event.beta;  // -180 a 180
+        const y = event.gamma; // -90 a 90
         
-        if (currentCard) {
-            // Adiciona classe de saída para animação
-            currentCard.classList.remove('active');
-            currentCard.classList.add('exit');
-            
-            // Remove a classe exit após a animação
-            setTimeout(() => {
-                currentCard.classList.remove('exit');
-            }, 1200); // Deve ser o mesmo tempo da transição CSS
+        if (x && y) {
+            bg.style.transform = `translate(${y / 2}px, ${x / 2}px)`;
         }
+    });
 
-        // Prepara o próximo card
-        const nextCard = cards[index];
-        // Pequeno delay para a animação de saída começar
-        setTimeout(() => {
-            nextCard.classList.add('active');
-        }, 100); 
+    function updateApp(newIndex) {
+        // Remove ativo de todos
+        cards.forEach(card => card.classList.remove('active'));
 
-        updatePagination(index);
-        updateBackground(index);
-    }
+        // Atualiza index
+        currentIndex = newIndex;
 
-    // Função opcional: Mudar sutilmente o fundo baseada no poema
-    function updateBackground(index) {
-        // Exemplo: escurecer mais nos poemas mais dolorosos (3 e 4)
-        if (index === 2 || index === 3) {
-            tulipGarden.style.filter = 'blur(8px) brightness(0.2) saturate(0.5)';
-        } else {
-            tulipGarden.style.filter = 'blur(8px) brightness(0.4) saturate(0.8)';
+        // Ativa o novo
+        cards[currentIndex].classList.add('active');
+
+        // Atualiza texto de progresso
+        progresso.textContent = `${currentIndex + 1} / ${cards.length}`;
+
+        // Feedback tátil simples (se disponível)
+        if (window.navigator.vibrate) {
+            window.navigator.vibrate(10);
         }
     }
 
     nextBtn.addEventListener('click', () => {
-        currentIndex++;
-        if (currentIndex >= totalCards) {
-            currentIndex = 0; // Volta para o primeiro
-        }
-        showCard(currentIndex, 'next');
+        let index = currentIndex + 1;
+        if (index >= cards.length) index = 0;
+        updateApp(index);
     });
 
     prevBtn.addEventListener('click', () => {
-        currentIndex--;
-        if (currentIndex < 0) {
-            currentIndex = totalCards - 1; // Vai para o último
-        }
-        showCard(currentIndex, 'prev');
+        let index = currentIndex - 1;
+        if (index < 0) index = cards.length - 1;
+        updateApp(index);
     });
 
-    // Início da experiência
-    showCard(currentIndex);
+    // Suporte a Swipe (deslizar o dedo)
+    let touchstartX = 0;
+    let touchendX = 0;
+
+    document.addEventListener('touchstart', e => {
+        touchstartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', e => {
+        touchendX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        if (touchendX < touchstartX - 50) {
+            nextBtn.click();
+        }
+        if (touchendX > touchstartX + 50) {
+            prevBtn.click();
+        }
+    }
 });
